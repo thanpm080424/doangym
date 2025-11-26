@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Gym - Member Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="member-portal">
+    <div class="background-overlay">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="portal-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="header-logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6.5 6.5h-1a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h1"></path>
+                        <path d="M17.5 6.5h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-1"></path>
+                        <path d="M6.5 9h11"></path>
+                        <path d="M6.5 15h11"></path>
+                    </svg>
+                </div>
+                <div class="header-info">
+                    <h1>POWER GYM</h1>
+                    <p id="headerGreeting">Xin chào</p>
+                </div>
+            </div>
+            <button class="btn-logout" onclick="logout()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="portal-main">
+        <!-- Home Tab -->
+        <div id="homeTab" class="content-section active">
+            <!-- Welcome Card -->
+            <div class="card welcome-card">
+                <div class="welcome-text">
+                    <p>Chào buổi sáng! 👋</p>
+                    <h2 id="memberName">Hội viên</h2>
+                    <p class="member-id">Mã hội viên: <span id="memberQR">MEM001</span></p>
+                </div>
+            </div>
+
+            <!-- Package Status -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Gói tập hiện tại</h3>
+                    <span id="packageBadge" class="badge badge-active">Còn 150 ngày</span>
+                </div>
+                <div class="package-info">
+                    <div class="package-icon" id="packageIcon" style="background: rgba(249, 115, 22, 0.2);">⭐</div>
+                    <div class="package-details">
+                        <h3 id="packageName" style="color: #f97316;">Premium 6 tháng</h3>
+                        <p id="packageDates">15/01/2025 - 15/07/2025</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="packageProgress" style="width: 20%; background: #f97316;"></div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(59, 130, 246, 0.2);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <p class="stat-value" id="thisMonthSessions">12</p>
+                    <p class="stat-label">Buổi tập tháng này</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(34, 197, 94, 0.2);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                    </div>
+                    <p class="stat-value" id="totalSessions">45</p>
+                    <p class="stat-label">Tổng buổi tập</p>
+                </div>
+            </div>
+
+            <!-- Trainer Info -->
+            <div class="card" id="trainerCard" style="display: none;">
+                <h3 class="card-title">Huấn luyện viên của bạn</h3>
+                <div class="trainer-card">
+                    <div class="trainer-avatar" id="trainerAvatar">💪</div>
+                    <div class="trainer-info">
+                        <h3 id="trainerName">PT Name</h3>
+                        <p class="trainer-specialty" id="trainerSpecialty">Specialization</p>
+                        <div class="trainer-rating">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <span id="trainerRating">4.8</span>
+                            <span style="color: var(--text-tertiary);">•</span>
+                            <span id="trainerExperience">5 năm KN</span>
+                        </div>
+                    </div>
+                    <button class="btn-call">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Check-in Tab -->
+        <div id="checkinTab" class="content-section">
+            <div class="text-center mb-6">
+                <h2 style="font-size: 24px; font-weight: 700;">Điểm danh</h2>
+                <p style="color: var(--text-secondary); margin-top: 8px;">Quét mã QR hoặc nhấn nút bên dưới</p>
+            </div>
+
+            <!-- QR Code -->
+            <div class="card qr-container">
+                <div class="qr-code">
+                    <div class="qr-code-inner">
+                        <div class="qr-grid" id="qrGrid"></div>
+                        <span class="qr-code-id" id="qrCodeId">MEM001</span>
+                    </div>
+                </div>
+                <p class="qr-info" id="qrMemberId">MEM001</p>
+                <p class="qr-name" id="qrMemberName">Nguyễn Văn An</p>
+            </div>
+
+            <!-- Check-in Status -->
+            <div class="checkin-status" id="checkinStatus">
+                <div class="status-icon inactive" id="statusIcon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3h7v7H3z"></path>
+                        <path d="M14 3h7v7h-7z"></path>
+                        <path d="M14 14h7v7h-7z"></path>
+                        <path d="M3 14h7v7H3z"></path>
+                    </svg>
+                </div>
+                <p class="status-text inactive" id="statusText">Bạn chưa check-in hôm nay</p>
+                <div class="timer" id="timer" style="display: none;">00:00:00</div>
+                <button class="btn-checkin" id="checkinBtn" onclick="handleCheckin()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Check-in ngay
+                </button>
+            </div>
+
+            <!-- Today Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <p style="font-size: 24px; font-weight: 700; color: #fb923c;">7</p>
+                    <p style="font-size: 12px; color: var(--text-tertiary);">Buổi tập tuần này</p>
+                </div>
+                <div class="stat-card">
+                    <p style="font-size: 24px; font-weight: 700; color: #60a5fa;">~2h</p>
+                    <p style="font-size: 12px; color: var(--text-tertiary);">TB thời gian/buổi</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Package Tab -->
+        <div id="packageTab" class="content-section">
+            <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 24px;">Gói tập của bạn</h2>
+            
+            <!-- Current Package Detail -->
+            <div class="card" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(239, 68, 68, 0.2)); border-color: rgba(249, 115, 22, 0.3);">
+                <div class="card-header">
+                    <span class="badge" style="background: #f97316; color: white; font-weight: 700;">ĐANG SỬ DỤNG</span>
+                    <span class="badge badge-active">Còn 150 ngày</span>
+                </div>
+                <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Premium 6 tháng</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 24px;">Gói cao cấp</p>
+                <div style="margin-bottom: 24px;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 14px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        Sử dụng máy tập
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 14px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        PT hướng dẫn 2 buổi/tuần
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 14px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        Yoga/Aerobic
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; font-size: 14px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        Xông hơi
+                    </div>
+                </div>
+                <div class="package-dates">
+                    <div class="date-item">
+                        <p>Ngày bắt đầu</p>
+                        <p>15/01/2025</p>
+                    </div>
+                    <div class="date-item text-right">
+                        <p>Ngày kết thúc</p>
+                        <p>15/07/2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Tab -->
+        <div id="historyTab" class="content-section">
+            <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 24px;">Lịch sử điểm danh</h2>
+            
+            <!-- Summary -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px;">
+                <div class="stat-card text-center">
+                    <p style="font-size: 20px; font-weight: 700; color: #fb923c;">12</p>
+                    <p style="font-size: 10px; color: var(--text-tertiary);">Tháng này</p>
+                </div>
+                <div class="stat-card text-center">
+                    <p style="font-size: 20px; font-weight: 700; color: #60a5fa;">45</p>
+                    <p style="font-size: 10px; color: var(--text-tertiary);">Tổng cộng</p>
+                </div>
+                <div class="stat-card text-center">
+                    <p style="font-size: 20px; font-weight: 700; color: #86efac;">~2h</p>
+                    <p style="font-size: 10px; color: var(--text-tertiary);">TB/buổi</p>
+                </div>
+            </div>
+
+            <!-- History List -->
+            <div class="card">
+                <h3 class="card-title">Chi tiết điểm danh</h3>
+                <div id="historyList">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Tab -->
+        <div id="scheduleTab" class="content-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h2 style="font-size: 24px; font-weight: 700;">Lịch tập</h2>
+                <button class="btn-primary" style="padding: 8px 16px; font-size: 14px;">+ Đặt lịch</button>
+            </div>
+
+            <!-- Schedule List -->
+            <div class="card">
+                <h3 class="card-title">Lịch sắp tới</h3>
+                <div id="scheduleList">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-content">
+            <button class="nav-item active" onclick="switchTab('home')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>Trang chủ</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('checkin')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 3h7v7H3z"></path>
+                    <path d="M14 3h7v7h-7z"></path>
+                    <path d="M14 14h7v7h-7z"></path>
+                    <path d="M3 14h7v7H3z"></path>
+                </svg>
+                <span>Điểm danh</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('package')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+                <span>Gói tập</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('history')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>Lịch sử</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('schedule')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Lịch tập</span>
+            </button>
+        </div>
+    </nav>
+
+    <script src="member-portal.js"></script>
+</body>
+</html>
